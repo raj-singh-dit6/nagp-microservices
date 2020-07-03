@@ -9,4 +9,4 @@ ENV PORT=8050
 EXPOSE 8050
 
 #CMD ["--spring.profiles.active=test"]
-ENTRYPOINT ["java","-jar","user-0.0.1-SNAPSHOT.jar"]s
+ENTRYPOINT ["java","-jar","user-0.0.1-SNAPSHOT.jar"]

@@ -1,40 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service
+  name: user-deployment
 spec:
   selector:
     matchLabels:
-       app: user-service
+       app: user
   template:
     metadata:
       labels:
-        app: user-service
+        app: user
     spec:
       containers:
-      - name: user-service
-        image: rajsingh6/userservice:v1
+      - name: user
+        image: rajsingh6/userservice:v2
         ports:
           - containerPort: 8050
         env:
           - name: SPRING_PROFILES_ACTIVE
-            value: dev
+            value: "dev"
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
-                name: postgres-creds
-                key: username
+                name: postgres-credentials
+                key: POSTGRES_USER
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: postgres-creds
-                key: password
+                name: postgres-credentials
+                key: POSTGRES_PASSWORD
           - name: POSTGRES_DB
             valueFrom:
               secretKeyRef:
-                name: postgres-creds
-                key: db
+                name: postgres-credentials
+                key: POSTGRES_DB
           - name: POSTGRES_HOST
             value: postgres-service
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: user-service
+spec:
+    type: ClusterIP
+    selector:
+        app: user
+    ports:
+    - port: 8050
+      targetPort: 8050
         
