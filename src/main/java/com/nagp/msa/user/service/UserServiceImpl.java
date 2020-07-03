@@ -12,7 +12,7 @@ import com.nagp.msa.user.repo.UserRepo;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	private final static Logger LOG = LoggerFactory.getLogger(UserService.class);
+	private final static Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	
 	@Autowired UserRepo userRepo;
