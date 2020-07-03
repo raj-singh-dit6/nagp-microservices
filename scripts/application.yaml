@@ -3,14 +3,13 @@ kind: Deployment
 metadata:
   name: user-service
 spec:
-  replicas: 1
   selector:
     matchLabels:
-       component: user-service
+       app: user-service
   template:
     metadata:
       labels:
-        component: user-service
+        app: user-service
     spec:
       containers:
       - name: user-service
@@ -30,7 +29,12 @@ spec:
               secretKeyRef:
                 name: postgres-creds
                 key: password
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: postgres-creds
+                key: db
           - name: POSTGRES_HOST
-            value: 10.103.255.47
+            value: postgres-service
 
         
