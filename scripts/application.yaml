@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: rajsingh6/userservice:v2
+        image: rajsingh6/userservice:v10
         ports:
           - containerPort: 8050
         env:
